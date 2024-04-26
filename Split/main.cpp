@@ -16,7 +16,7 @@ void main()
 
 	int size_even{}, size_odd{};
 	for (int i = 0; i < size_A; i++)
-		*(A + i) % 2 == 0 ? size_even++ : size_odd++;
+		(*(A + i) % 2 == 0 ? size_even : size_odd)++;
 	
 	int* even = new int[size_even];
 	int* odd = new int[size_odd];
@@ -38,6 +38,6 @@ void Split(int* A, int size_A, int* even, int* odd)
 	int* p_even = even, * p_odd = odd;
 
 	for (int i = 0; i < size_A; i++)
-		*(A + i) % 2 == 0 ? *(p_even++) = *(A + i) :
-		*(p_odd++) = *(A + i);
+		(*(A + i) % 2 == 0 ? *p_even++ : *p_odd++) 
+		= *(A + i);
 }
