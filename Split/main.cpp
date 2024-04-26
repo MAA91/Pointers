@@ -31,10 +31,17 @@ void main()
 		else
 			*(odd + odd_t++) = *(A + i);
 
+	cout << "Even: ";
 	for (int i = 0; i < size_even; i++)
 		cout << *(even + i) << "\t";
 	cout << endl;
+
+	cout << "Odd: ";
 	for (int i = 0; i < size_odd; i++)
 		cout << *(odd + i) << "\t";
 	cout << endl;
+
+	delete A;
+	delete even;
+	delete odd;
 }
