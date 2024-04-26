@@ -9,7 +9,7 @@ void main()
 	setlocale(0, "");
 	srand(time(NULL));
 
-	unsigned int size_A = 10;
+	int size_A = 10;
 	int* A = new int[size_A];
 	FillRand(A, size_A, 0, 10);
 	Print(A, size_A);
