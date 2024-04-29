@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "BaseFunction.h"
 #include "BaseFunction.cpp"
 
@@ -10,22 +10,16 @@ void main()
 	srand(time(NULL));
 
 	int size_A{};
-	cout << "Ââåäèòå ðàçìåð ìàññèâà: "; cin >> size_A;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð¼Ð°ÑÑÐ¸Ð²Ð°: "; cin >> size_A;
 	int* A = new int[size_A];
 	FillRand(A, size_A, 0, 10);
 	Print(A, size_A);
 
-	A = PushBack(A, size_A, 5);
-	/*int veleu{};
-	cout << "Ââåäèòå çíà÷åíèå ïåðåìåííîé äëÿ äîáàâëåíèÿ å¸ "
-		<< "â ìàññèâ: "; cin >> veleu;
-
-	int* Buf = A;
-	A = new int[size_A + 1];
-	for (int i = 0; i < size_A; i++)
-		*(A + i) = *(Buf + i);
-	delete[] Buf;
-	*(A + size_A++) = veleu;*/
+	int veleu{};
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹ Ð´Ð»Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ ÐµÑ‘ "
+		<< "Ð² Ð¼Ð°ÑÑÐ¸Ð²: "; cin >> veleu;
+	A = PushBack(A, size_A, veleu);
+	
 	Print(A, size_A);
 
 	delete[] A;
