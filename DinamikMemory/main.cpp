@@ -18,9 +18,9 @@ void main()
 	cout << "¬ведите значение переменной дл€ добавлени€ еЄ "
 		<< "в массив: "; cin >> veleu;
 
-	int* Buf = new int[size_A];
-	Buf = A;
+	int* Buf = A;
 	A = new int[size_A + 1];
+
 	for (int i = 0; i < size_A; i++)
 		*(A + i) = *(Buf + i);
 	delete[] Buf;
