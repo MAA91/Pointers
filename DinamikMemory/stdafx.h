@@ -3,5 +3,8 @@
 #include <iostream>
 
 using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 const int SIZE = 10;
