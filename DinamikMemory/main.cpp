@@ -1,28 +1,10 @@
 ﻿#include "stdafx.h"
 #include "BaseFunction.h"
 #include "BaseFunction.cpp"
+#include "PushAndPop.h"
 
 //#define DINAMIK_MEMORY_1
 #define DINAMIK_MEMORY_2
-
-int* PushBack(int* A, int& size_A, int element);
-int* PushFront(int* A, int& size_A, int element);
-
-int* PopBack(int* A, int& size_A);
-int* PopFront(int* A, int& size_A);
-
-int* Insert(int* A, int& size_A, int index, int element);
-int* Erase(int* A, int& size_A, int index);
-
-int** Allocate(int rows_A, int cols_A);
-void Clear(int** A, int rows_A);
-
-int** PushRowFront(int** A, int& rows_A, int cols_A, int* B);
-int** InsertRow(int** A, int& rows_A, int cols_A, int* B, int index_Row);
-
-int** PopRowBack(int** A, int& rows_A);
-int** PopRowFront(int** A, int& rows_A);
-int** EraseRow(int** A, int& rows_A, int index_Row);
 
 void main()
 {
@@ -74,9 +56,14 @@ void main()
 	Print(A, rows_A, cols_A);
 
 	int* B = new int[cols_A];
+
 	FillRand(B, cols_A, 1, 10);
 	Print(B, cols_A); cout << endl;
+	A = PushRowBack(A, rows_A, cols_A, B);
+	Print(A, rows_A, cols_A);
 
+	FillRand(B, cols_A, 1, 10);
+	Print(B, cols_A); cout << endl;
 	A = PushRowFront(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A);
 
@@ -92,138 +79,38 @@ void main()
 	A = PopRowFront(A, rows_A);
 	Print(A, rows_A, cols_A); cout << endl;
 
-	cout << "Введите индекс по которому удалить строку в массв: ";
+	cout << "Введите индекс по которому удалить строку из массва: ";
 	cin >> index_Row;
 	A = EraseRow(A, rows_A, index_Row);
 	Print(A, rows_A, cols_A); cout << endl;
 
+	FillRand(B, rows_A, 1, 10);
+	Print(B, rows_A);
+	A = PushColBack(A, rows_A, cols_A, B);
+	Print(A, rows_A, cols_A); cout << endl;
+
+	FillRand(B, rows_A, 1, 10);
+	Print(B, rows_A);
+	A = PushColFront(A, rows_A, cols_A, B);
+	Print(A, rows_A, cols_A); cout << endl;
+
+	FillRand(B, rows_A, 1, 10);
+	Print(B, rows_A);
+	int index_Col;
+	cout << "Введите индекс по которому добавить столбец в массв: ";
+	cin >> index_Col;
+	A = InsertCol(A, rows_A, cols_A, B, index_Col);
+	Print(A, rows_A, cols_A); cout << endl;
+
+	A = PopColBack(A, rows_A, cols_A);
+	A = PopColFront(A, rows_A, cols_A);
+	Print(A, rows_A, cols_A); cout << endl;
+
+	cout << "Введите индекс по которому удалить столбец из массва: ";
+	cin >> index_Col;
+	A = EraseCol(A, rows_A, cols_A, index_Col);
+	Print(A, rows_A, cols_A); cout << endl;
+
 	Clear(A, rows_A);
 #endif //DINAMIK_MEMORY_2
-	
-
-	
-}
-
-int* PushBack(int* A, int& size_A, int element)
-{
-	int* Buf = new int[size_A + 1];
-	for (int i = 0; i < size_A; i++)
-		*(Buf + i) = *(A + i);
-	*(Buf + size_A) = element;
-	size_A++;
-	delete[] A;
-	return Buf;
-}
-int* PushFront(int* A, int& size_A, int element)
-
-{
-	int* Buf = new int[++size_A];
-	*Buf = element;
-	for (int i = 1; i < size_A; i++)
-		*(Buf + i) = *(A + i - 1);
-	delete[] A;
-	return Buf;
-}
-
-int* PopBack(int* A, int& size_A)
-{
-	int* Buf = new int[--size_A];
-	for (int i = 0; i < size_A; i++) *(Buf + i) = *(A + i);
-	delete[] A;
-	return Buf;
-}
-int* PopFront(int* A, int& size_A)
-{
-	int* Buf = new int[--size_A];
-	for (int i = 0; i < size_A; i++) *(Buf + i) = *(A + i + 1);
-	delete[] A;
-	return Buf;
-}
-
-int* Insert(int* A, int& size_A, int element, int index)
-{
-	int* Buf = new int[++size_A];
-	for (int i = 0; i < size_A; i++)
-		*(Buf + i) = (i < index ? *(A + i) :
-			(i > index ? *(A + i - 1) : element));
-	return Buf;
-}
-int* Erase(int* A, int& size_A, int index)
-{
-	int* Buf = new int[size_A - 1];
-	for (int i = 0; i < size_A; i++)
-		*(Buf + i) = (i < index ? *(A + i) : *(A + i + 1));
-	size_A--;
-	return Buf;
-}
-
-int** Allocate(int rows_A, int cols_A)
-{
-	int** A = new int* [rows_A];
-	for (int i = 0; i < rows_A; i++)
-		A[i] = new int[cols_A];
-	return A;
-}
-void Clear(int** A, int rows_A)
-{
-	for (int i = 0; i < rows_A; i++)
-		delete[] A[i];
-	delete[] A;
-}
-
-int** PushRowFront(int** A, int& rows_A, int cols_A, int* B)
-{
-	int** Buf = new int* [++rows_A];
-	Buf[0] = new int[cols_A];
-	for (int j = 0; j < cols_A; j++)
-		Buf[0][j] = B[j];
-	for (int i = 1; i < rows_A; i++)
-		Buf[i] = A[i - 1];
-	delete[] A;
-	return Buf;
-}
-int** InsertRow(int** A, int& rows_A, int cols_A, int* B, int index_Row)
-{
-	int** Buf = new int* [++rows_A];
-	Buf[index_Row] = new int[cols_A];
-	for (int j = 0; j < cols_A; j++)
-		Buf[index_Row][j] = B[j];
-	for (int i = 0; i < rows_A; i++)
-		if (i != index_Row)
-			Buf[i] = (i < index_Row ? A[i] : A[i - 1]);
-			
-	delete[] A;
-	return Buf;
-}
-
-int** PopRowBack(int** A, int& rows_A)
-{
-	int** Buf = new int* [--rows_A];
-	for (int i = 0; i < rows_A; i++)
-		Buf[i] = A[i];
-	delete[] A[rows_A];
-	delete[] A;
-	return Buf;
-}
-int** PopRowFront(int** A, int& rows_A)
-{
-	int** Buf = new int* [--rows_A];
-	for (int i = 0; i < rows_A; i++)
-		Buf[i] = A[i + 1];
-	delete[] A[0];
-	delete[] A;
-	return Buf;
-}
-int** EraseRow(int** A, int& rows_A, int index_Row)
-{
-	int** Buf = new int* [rows_A - 1];
-	for (int i = 0; i < rows_A; i++)
-		if (i < index_Row)
-			Buf[i] = A[i];
-		else if(i > index_Row)
-			Buf[i - 1] = A[i];
-	rows_A--;
-	delete[] A[index_Row];
-	delete[] A;
-	return Buf;
 }

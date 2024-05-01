@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="BaseFunction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PushAndPop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseFunction.h" />
+    <ClInclude Include="PushAndPop.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
