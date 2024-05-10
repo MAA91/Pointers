@@ -43,6 +43,7 @@ int* Insert(int* A, int& size_A, int element, int index)
 	for (int i = 0; i < size_A; i++)
 		*(Buf + i) = (i < index ? *(A + i) :
 			(i > index ? *(A + i - 1) : element));
+	delete[] A;
 	return Buf;
 }
 int* Erase(int* A, int& size_A, int index)
@@ -51,6 +52,7 @@ int* Erase(int* A, int& size_A, int index)
 	for (int i = 0; i < size_A; i++)
 		*(Buf + i) = (i < index ? *(A + i) : *(A + i + 1));
 	size_A--;
+	delete[] A;
 	return Buf;
 }
 

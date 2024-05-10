@@ -11,4 +11,5 @@ void main()
 	{
 		cout << *(A + i) << endl;
 	}
+	cout << A;
 }
