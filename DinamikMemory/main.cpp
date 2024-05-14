@@ -2,6 +2,7 @@
 #include "BaseFunction.h"
 #include "BaseFunction.cpp"
 #include "PushAndPop.h"
+#include "PushAndPop.cpp"
 
 //#define DINAMIK_MEMORY_1
 #define DINAMIK_MEMORY_2
@@ -13,11 +14,11 @@ void main()
 #ifdef DINAMIK_MEMORY_1
 	int size_A{};
 	cout << "Введите размер массива: "; cin >> size_A;
-	int* A = new int[size_A];
+	double* A = new double[size_A];
 	FillRand(A, size_A, 0, 10);
 	Print(A, size_A);
 
-	int element{};
+	double element{};
 	cout << "Введите значение переменной для добавления её "
 		<< "в массив: "; cin >> element;
 	A = PushBack(A, size_A, element);
@@ -51,7 +52,8 @@ void main()
 	cout << "Введите кол-во строк массива: "; cin >> rows_A;
 	cout << "Введите кол-во столбцов массива: "; cin >> cols_A;
 
-	int** A = Allocate(rows_A, cols_A);
+	int** A = nullptr;
+	A = Allocate(A, rows_A, cols_A);
 	FillRand(A, rows_A, cols_A, 1, 10);
 	Print(A, rows_A, cols_A);
 

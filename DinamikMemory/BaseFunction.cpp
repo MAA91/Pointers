@@ -4,12 +4,14 @@
 template <typename T, typename T1 >
 void FillRand(T A[], int size, T1 min_zn, T1 max_zn)
 {
+	srand(time(NULL));
 	for (int i = 0; i < size; i++)
 		A[i] = (T)(rand() % 1000) / 1000 + min_zn + rand() % (int)(max_zn - min_zn);
 }
 template <typename T, typename T1 >
 void FillRand(T** A, int ROW, int COL, T1 min_zn, T1 max_zn)
 {
+	srand(time(NULL));
 	for (int i = 0; i < ROW; i++)
 		for (int j = 0; j < COL; j++)
 			A[i][j] = (T)(rand() % 1000) / 1000 + min_zn + rand() % (int)(max_zn - min_zn);
