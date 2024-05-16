@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseFunction.cpp" />
+    <ClCompile Include="FillRand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PushAndPop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseFunction.h" />
+    <ClInclude Include="FillRand.h" />
     <ClInclude Include="PushAndPop.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

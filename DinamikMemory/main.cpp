@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "FillRand.h"
 #include "BaseFunction.h"
 #include "BaseFunction.cpp"
 #include "PushAndPop.h"
@@ -11,14 +12,15 @@ void main()
 {
 	setlocale(0, "");
 	srand(time(NULL));
+	typedef int DataType;
 #ifdef DINAMIK_MEMORY_1
 	int size_A{};
 	cout << "Введите размер массива: "; cin >> size_A;
-	double* A = new double[size_A];
-	FillRand(A, size_A, 0, 10);
+	DataType* A = new DataType[size_A];
+	FillRand(A, size_A);
 	Print(A, size_A);
 
-	double element{};
+	DataType element{};
 	cout << "Введите значение переменной для добавления её "
 		<< "в массив: "; cin >> element;
 	A = PushBack(A, size_A, element);
@@ -52,24 +54,24 @@ void main()
 	cout << "Введите кол-во строк массива: "; cin >> rows_A;
 	cout << "Введите кол-во столбцов массива: "; cin >> cols_A;
 
-	int** A = nullptr;
+	DataType** A = nullptr;
 	A = Allocate(A, rows_A, cols_A);
-	FillRand(A, rows_A, cols_A, 1, 10);
+	FillRand(A, rows_A, cols_A);
 	Print(A, rows_A, cols_A);
 
-	int* B = new int[cols_A];
+	DataType* B = new DataType[cols_A];
 
-	FillRand(B, cols_A, 1, 10);
+	FillRand(B, cols_A);
 	Print(B, cols_A); cout << endl;
 	A = PushRowBack(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A);
 
-	FillRand(B, cols_A, 1, 10);
+	FillRand(B, cols_A);
 	Print(B, cols_A); cout << endl;
 	A = PushRowFront(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A);
 
-	FillRand(B, cols_A, 1, 10);
+	FillRand(B, cols_A);
 	Print(B, cols_A); cout << endl;
 	int index_Row;
 	cout << "Введите индекс по которому добавить строку в массв: ";
@@ -86,17 +88,17 @@ void main()
 	A = EraseRow(A, rows_A, index_Row);
 	Print(A, rows_A, cols_A); cout << endl;
 
-	FillRand(B, rows_A, 1, 10);
+	FillRand(B, rows_A);
 	Print(B, rows_A);
 	A = PushColBack(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A); cout << endl;
 
-	FillRand(B, rows_A, 1, 10);
+	FillRand(B, rows_A);
 	Print(B, rows_A);
 	A = PushColFront(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A); cout << endl;
 
-	FillRand(B, rows_A, 1, 10);
+	FillRand(B, rows_A);
 	Print(B, rows_A);
 	int index_Col;
 	cout << "Введите индекс по которому добавить столбец в массв: ";
