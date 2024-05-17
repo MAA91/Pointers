@@ -5,8 +5,8 @@
 #include "PushAndPop.h"
 #include "PushAndPop.cpp"
 
-#define DINAMIK_MEMORY_1
-//#define DINAMIK_MEMORY_2
+//#define DINAMIK_MEMORY_1
+#define DINAMIK_MEMORY_2
 
 void main()
 {

@@ -58,12 +58,12 @@ template <typename T> T* PopFront(T* A, int& size_A)
 
 template <typename T> T** Allocate(int rows_A, int cols_A)
 {
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 		Buf[i] = new T[cols_A];
 	return Buf;
 }
-template <typename T> void Clear(T** A, int rows_A) 
+template <typename T> void Clear(T** A, int rows_A)
 {
 	for (int i = 0; i < rows_A; i++)
 		delete[] A[i];
@@ -72,7 +72,7 @@ template <typename T> void Clear(T** A, int rows_A)
 
 template <typename T> T** InsertRow(T** A, int& rows_A, int cols_A, T* B, int index_Row)
 {
-	T** Buf = new T* [++rows_A];
+	T** Buf = new T * [++rows_A];
 	Buf[index_Row] = new T[cols_A];
 	for (int j = 0; j < cols_A; j++)
 		Buf[index_Row][j] = B[j];
@@ -85,7 +85,7 @@ template <typename T> T** InsertRow(T** A, int& rows_A, int cols_A, T* B, int in
 }
 template <typename T> T** PushRowBack(T** A, int& rows_A, int cols_A, T* B)
 {
-	T** Buf = new T* [rows_A + 1];
+	T** Buf = new T * [rows_A + 1];
 	Buf[rows_A++] = new T[cols_A];
 	for (int i = 0; i < rows_A - 1; i++)
 		Buf[i] = A[i];
@@ -96,7 +96,7 @@ template <typename T> T** PushRowBack(T** A, int& rows_A, int cols_A, T* B)
 }
 template <typename T> T** PushRowFront(T** A, int& rows_A, int cols_A, T* B)
 {
-	T** Buf = new T* [++rows_A];
+	T** Buf = new T * [++rows_A];
 	Buf[0] = new T[cols_A];
 	for (int j = 0; j < cols_A; j++)
 		Buf[0][j] = B[j];
@@ -108,7 +108,7 @@ template <typename T> T** PushRowFront(T** A, int& rows_A, int cols_A, T* B)
 
 template <typename T> T** EraseRow(T** A, int& rows_A, int index_Row)
 {
-	T** Buf = new T* [rows_A - 1];
+	T** Buf = new T * [rows_A - 1];
 	for (int i = 0; i < rows_A; i++)
 		if (i < index_Row)
 			Buf[i] = A[i];
@@ -121,7 +121,7 @@ template <typename T> T** EraseRow(T** A, int& rows_A, int index_Row)
 }
 template <typename T> T** PopRowBack(T** A, int& rows_A)
 {
-	T** Buf = new T* [--rows_A];
+	T** Buf = new T * [--rows_A];
 	for (int i = 0; i < rows_A; i++)
 		Buf[i] = A[i];
 	delete[] A[rows_A];
@@ -130,7 +130,7 @@ template <typename T> T** PopRowBack(T** A, int& rows_A)
 }
 template <typename T> T** PopRowFront(T** A, int& rows_A)
 {
-	T** Buf = new T* [--rows_A];
+	T** Buf = new T * [--rows_A];
 	for (int i = 0; i < rows_A; i++)
 		Buf[i] = A[i + 1];
 	delete[] A[0];
@@ -140,7 +140,7 @@ template <typename T> T** PopRowFront(T** A, int& rows_A)
 
 template <typename T> T** InsertCol(T** A, int rows_A, int& cols_A, T* B, int index_Col)
 {
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	cols_A++;
 	for (int i = 0; i < rows_A; i++)
 	{
@@ -155,7 +155,7 @@ template <typename T> T** InsertCol(T** A, int rows_A, int& cols_A, T* B, int in
 }
 template <typename T> T** PushColBack(T** A, int rows_A, int& cols_A, T* B)
 {
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 	{
 		Buf[i] = new T[cols_A + 1];
@@ -170,7 +170,7 @@ template <typename T> T** PushColBack(T** A, int rows_A, int& cols_A, T* B)
 }
 template <typename T> T** PushColFront(T** A, int rows_A, int& cols_A, T* B)
 {
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 	{
 		Buf[i] = new T[cols_A + 1];
@@ -186,7 +186,7 @@ template <typename T> T** PushColFront(T** A, int rows_A, int& cols_A, T* B)
 
 template <typename T> T** EraseCol(T** A, int rows_A, int& cols_A, int index_Col)
 {
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 	{
 		Buf[i] = new T[cols_A - 1];
@@ -203,7 +203,7 @@ template <typename T> T** EraseCol(T** A, int rows_A, int& cols_A, int index_Col
 template <typename T> T** PopColBack(T** A, int rows_A, int& cols_A)
 {
 	cols_A--;
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 	{
 		Buf[i] = new T[cols_A];
@@ -217,7 +217,7 @@ template <typename T> T** PopColBack(T** A, int rows_A, int& cols_A)
 template <typename T> T** PopColFront(T** A, int rows_A, int& cols_A)
 {
 	cols_A--;
-	T** Buf = new T* [rows_A];
+	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 	{
 		Buf[i] = new T[cols_A];
