@@ -22,37 +22,20 @@ template <typename T> T* Erase(T* A, int& size_A, int index)
 
 template <typename T> T* PushBack(T* A, int& size_A, T element)
 {
-	T* Buf = new T[size_A + 1];
-	for (int i = 0; i < size_A; i++)
-		*(Buf + i) = *(A + i);
-	*(Buf + size_A) = element;
-	size_A++;
-	delete[] A;
-	return Buf;
+	return Insert(A, size_A, element, size_A);
 }
 template <typename T> T* PushFront(T* A, int& size_A, T element)
 {
-	T* Buf = new T[++size_A];
-	*Buf = element;
-	for (int i = 1; i < size_A; i++)
-		*(Buf + i) = *(A + i - 1);
-	delete[] A;
-	return Buf;
+	return Insert(A, size_A, element, 0);
 }
 
 template <typename T> T* PopBack(T* A, int& size_A)
 {
-	T* Buf = new T[--size_A];
-	for (int i = 0; i < size_A; i++) *(Buf + i) = *(A + i);
-	delete[] A;
-	return Buf;
+	return Erase(A, size_A, size_A - 1);
 }
 template <typename T> T* PopFront(T* A, int& size_A)
 {
-	T* Buf = new T[--size_A];
-	for (int i = 0; i < size_A; i++) *(Buf + i) = *(A + i + 1);
-	delete[] A;
-	return Buf;
+	return Erase(A, size_A, 0);
 }
 
 
@@ -85,57 +68,27 @@ template <typename T> T** InsertRow(T** A, int& rows_A, int cols_A, T* B, int in
 }
 template <typename T> T** PushRowBack(T** A, int& rows_A, int cols_A, T* B)
 {
-	T** Buf = new T * [rows_A + 1];
-	Buf[rows_A++] = new T[cols_A];
-	for (int i = 0; i < rows_A - 1; i++)
-		Buf[i] = A[i];
-	for (int j = 0; j < cols_A; j++)
-		Buf[rows_A - 1][j] = B[j];
-	delete[] A;
-	return Buf;
+	return InsertRow(A, rows_A, cols_A, B, rows_A);
 }
 template <typename T> T** PushRowFront(T** A, int& rows_A, int cols_A, T* B)
 {
-	T** Buf = new T * [++rows_A];
-	Buf[0] = new T[cols_A];
-	for (int j = 0; j < cols_A; j++)
-		Buf[0][j] = B[j];
-	for (int i = 1; i < rows_A; i++)
-		Buf[i] = A[i - 1];
-	delete[] A;
-	return Buf;
+	return InsertRow(A, rows_A, cols_A, B, 0);
 }
 
 template <typename T> T** EraseRow(T** A, int& rows_A, int index_Row)
 {
-	T** Buf = new T * [rows_A - 1];
-	for (int i = 0; i < rows_A; i++)
-		if (i < index_Row)
-			Buf[i] = A[i];
-		else if (i > index_Row)
-			Buf[i - 1] = A[i];
-	rows_A--;
 	delete[] A[index_Row];
-	delete[] A;
-	return Buf;
+	return Erase(A, rows_A, index_Row);
 }
 template <typename T> T** PopRowBack(T** A, int& rows_A)
 {
-	T** Buf = new T * [--rows_A];
-	for (int i = 0; i < rows_A; i++)
-		Buf[i] = A[i];
-	delete[] A[rows_A];
-	delete[] A;
-	return Buf;
+	delete[] A[rows_A - 1];
+	return PopBack(A, rows_A);
 }
 template <typename T> T** PopRowFront(T** A, int& rows_A)
 {
-	T** Buf = new T * [--rows_A];
-	for (int i = 0; i < rows_A; i++)
-		Buf[i] = A[i + 1];
 	delete[] A[0];
-	delete[] A;
-	return Buf;
+	return PopFront(A, rows_A);
 }
 
 template <typename T> T** InsertCol(T** A, int rows_A, int& cols_A, T* B, int index_Col)
@@ -144,44 +97,20 @@ template <typename T> T** InsertCol(T** A, int rows_A, int& cols_A, T* B, int in
 	cols_A++;
 	for (int i = 0; i < rows_A; i++)
 	{
-		Buf[i] = new T[cols_A];
-		for (int j = 0; j < cols_A; j++)
-			Buf[i][j] = (j < index_Col ? A[i][j] :
-				j > index_Col ? A[i][j - 1] : B[i]);
-		delete[] A[i];
+		Buf[i] = Insert(A[i], cols_A, B[i], index_Col);
+		cols_A--;
+		//delete[] A[i];
 	}
 	delete[] A;
 	return Buf;
 }
 template <typename T> T** PushColBack(T** A, int rows_A, int& cols_A, T* B)
 {
-	T** Buf = new T * [rows_A];
-	for (int i = 0; i < rows_A; i++)
-	{
-		Buf[i] = new T[cols_A + 1];
-		for (int j = 0; j < cols_A; j++)
-			Buf[i][j] = A[i][j];
-		Buf[i][cols_A] = B[i];
-		delete[] A[i];
-	}
-	cols_A++;
-	delete[] A;
-	return Buf;
+	return InsertCol(A, rows_A, cols_A, B, cols_A);
 }
 template <typename T> T** PushColFront(T** A, int rows_A, int& cols_A, T* B)
 {
-	T** Buf = new T * [rows_A];
-	for (int i = 0; i < rows_A; i++)
-	{
-		Buf[i] = new T[cols_A + 1];
-		Buf[i][0] = B[i];
-		for (int j = 0; j < cols_A; j++)
-			Buf[i][j + 1] = A[i][j];
-		delete[] A[i];
-	}
-	cols_A++;
-	delete[] A;
-	return Buf;
+	return InsertCol(A, rows_A, cols_A, B, 0);
 }
 
 template <typename T> T** EraseCol(T** A, int rows_A, int& cols_A, int index_Col)
@@ -189,42 +118,19 @@ template <typename T> T** EraseCol(T** A, int rows_A, int& cols_A, int index_Col
 	T** Buf = new T * [rows_A];
 	for (int i = 0; i < rows_A; i++)
 	{
-		Buf[i] = new T[cols_A - 1];
-		for (int j = 0; j < cols_A; j++)
-			if (j < index_Col) Buf[i][j] = A[i][j];
-			else if (j > index_Col)
-				Buf[i][j - 1] = A[i][j];
-		delete[] A[i];
+		Buf[i] = Erase(A[i], cols_A, index_Col);
+		++cols_A;
+		//delete[] A[i];
 	}
 	cols_A--;
-	delete[] A;
+	//delete[] A;
 	return Buf;
 }
 template <typename T> T** PopColBack(T** A, int rows_A, int& cols_A)
 {
-	cols_A--;
-	T** Buf = new T * [rows_A];
-	for (int i = 0; i < rows_A; i++)
-	{
-		Buf[i] = new T[cols_A];
-		for (int j = 0; j < cols_A; j++)
-			Buf[i][j] = A[i][j];
-		delete[] A[i];
-	}
-	delete[] A;
-	return Buf;
+	return EraseCol(A, rows_A, cols_A, cols_A - 1);
 }
 template <typename T> T** PopColFront(T** A, int rows_A, int& cols_A)
 {
-	cols_A--;
-	T** Buf = new T * [rows_A];
-	for (int i = 0; i < rows_A; i++)
-	{
-		Buf[i] = new T[cols_A];
-		for (int j = 0; j < cols_A; j++)
-			Buf[i][j] = A[i][j + 1];
-		delete[] A[i];
-	}
-	delete[] A;
-	return Buf;
+	return EraseCol(A, rows_A, cols_A, 0);
 }

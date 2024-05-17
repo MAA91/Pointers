@@ -12,6 +12,7 @@ void main()
 {
 	setlocale(0, "");
 	srand(time(NULL));
+
 	typedef int DataType;
 #ifdef DINAMIK_MEMORY_1
 	int size_A{};
@@ -61,19 +62,19 @@ void main()
 	DataType* B = new DataType[cols_A];
 
 	FillRand(B, cols_A);
-	Print(B, cols_A); cout << endl;
+	cout << endl; Print(B, cols_A);
 	A = PushRowBack(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A);
 
 	FillRand(B, cols_A);
-	Print(B, cols_A); cout << endl;
+	cout << endl; Print(B, cols_A);
 	A = PushRowFront(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A);
 
 	FillRand(B, cols_A);
-	Print(B, cols_A); cout << endl;
+	cout << endl; Print(B, cols_A);
 	int index_Row;
-	cout << "Введите индекс по которому добавить строку в массв: ";
+	cout << "Введите индекс по которому добавить строку в массив: ";
 	cin >> index_Row;
 	A = InsertRow(A, rows_A, cols_A, B, index_Row);
 	Print(A, rows_A, cols_A); cout << endl;
@@ -82,7 +83,7 @@ void main()
 	A = PopRowFront(A, rows_A);
 	Print(A, rows_A, cols_A); cout << endl;
 
-	cout << "Введите индекс по которому удалить строку из массва: ";
+	cout << "Введите индекс по которому удалить строку из массива: ";
 	cin >> index_Row;
 	A = EraseRow(A, rows_A, index_Row);
 	Print(A, rows_A, cols_A); cout << endl;
@@ -100,7 +101,7 @@ void main()
 	FillRand(B, rows_A);
 	Print(B, rows_A);
 	int index_Col;
-	cout << "Введите индекс по которому добавить столбец в массв: ";
+	cout << "Введите индекс по которому добавить столбец в массив: ";
 	cin >> index_Col;
 	A = InsertCol(A, rows_A, cols_A, B, index_Col);
 	Print(A, rows_A, cols_A); cout << endl;
@@ -109,7 +110,7 @@ void main()
 	A = PopColFront(A, rows_A, cols_A);
 	Print(A, rows_A, cols_A); cout << endl;
 
-	cout << "Введите индекс по которому удалить столбец из массва: ";
+	cout << "Введите индекс по которому удалить столбец из массива: ";
 	cin >> index_Col;
 	A = EraseCol(A, rows_A, cols_A, index_Col);
 	Print(A, rows_A, cols_A); cout << endl;

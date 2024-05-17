@@ -4,17 +4,12 @@
 template <typename T> void Print(T A[], int size)
 {
 	for (int i = 0; i < size; i++)
-		cout << A[i] << " ";
+		cout << A[i] << "\t";
 	cout << endl;
 }
 template <typename T> void Print(T** A, int ROW, int COL)
 {
-	for (int i = 0; i < ROW; i++)
-	{
-		for (int j = 0; j < COL; j++)
-			cout << A[i][j] << "\t";
-		cout << endl;
-	}
+	for (int i = 0; i < ROW; i++) Print(A[i], COL);
 }
 
 template <typename T> void Search(T A[])
