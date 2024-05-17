@@ -5,7 +5,7 @@ template <typename T> T* Insert(T* A, int& size_A, T element, int index)
 {
 	T* Buf = new T[++size_A];
 	for (int i = 0; i < size_A; i++)
-		*(Buf + i) = (i < index ? *(A + i) :
+		*(Buf + i) = (i < index ? *(A + i) : 
 			(i > index ? *(A + i - 1) : element));
 	delete[] A;
 	return Buf;

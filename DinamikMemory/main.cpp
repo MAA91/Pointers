@@ -5,8 +5,8 @@
 #include "PushAndPop.h"
 #include "PushAndPop.cpp"
 
-//#define DINAMIK_MEMORY_1
-#define DINAMIK_MEMORY_2
+#define DINAMIK_MEMORY_1
+//#define DINAMIK_MEMORY_2
 
 void main()
 {
@@ -19,22 +19,22 @@ void main()
 	cout << "Введите размер массива: "; cin >> size_A;
 	DataType* A = new DataType[size_A];
 	FillRand(A, size_A);
-	Print(A, size_A);
+	Print(A, size_A); cout << endl;
 
 	DataType element{};
 	cout << "Введите значение переменной для добавления её "
 		<< "в массив: "; cin >> element;
 	A = PushBack(A, size_A, element);
-	Print(A, size_A);
+	Print(A, size_A); cout << endl;
 
 	A = PushFront(A, size_A, element);
-	Print(A, size_A);
+	Print(A, size_A); cout << endl;
 
-	A = PopBack(A, size_A);
-	Print(A, size_A);
+	A = PopBack(A, size_A); 
+	Print(A, size_A); cout << endl;
 
 	A = PopFront(A, size_A);
-	Print(A, size_A);
+	Print(A, size_A); cout << endl;
 
 	cout << "Введите значение переменной для добавления её "
 		<< "в массив: "; cin >> element;
@@ -42,10 +42,10 @@ void main()
 	cout << "Введите индекс по которому добавить элемент: ";
 	cin >> index;
 	A = Insert(A, size_A, element, index);
-	Print(A, size_A);
+	Print(A, size_A); cout << endl;
 
 	A = Erase(A, size_A, index);
-	Print(A, size_A);
+	Print(A, size_A); cout << endl;
 
 	delete[] A;
 #endif //DINAMIK_MEMORY_1
@@ -57,22 +57,22 @@ void main()
 
 	DataType** A = Allocate<DataType>(rows_A, cols_A);
 	FillRand(A, rows_A, cols_A);
-	Print(A, rows_A, cols_A);
+	Print(A, rows_A, cols_A); cout << endl;
 
 	DataType* B = new DataType[cols_A];
 
 	FillRand(B, cols_A);
-	cout << endl; Print(B, cols_A);
+	Print(B, cols_A); cout << endl;
 	A = PushRowBack(A, rows_A, cols_A, B);
-	Print(A, rows_A, cols_A);
+	Print(A, rows_A, cols_A); cout << endl;
 
 	FillRand(B, cols_A);
-	cout << endl; Print(B, cols_A);
+	Print(B, cols_A); cout << endl;
 	A = PushRowFront(A, rows_A, cols_A, B);
-	Print(A, rows_A, cols_A);
+	Print(A, rows_A, cols_A); cout << endl;
 
 	FillRand(B, cols_A);
-	cout << endl; Print(B, cols_A);
+	Print(B, cols_A); cout << endl;
 	int index_Row;
 	cout << "Введите индекс по которому добавить строку в массив: ";
 	cin >> index_Row;
@@ -89,7 +89,7 @@ void main()
 	Print(A, rows_A, cols_A); cout << endl;
 
 	FillRand(B, rows_A);
-	Print(B, rows_A);
+	Print(B, rows_A); cout << endl;
 	A = PushColBack(A, rows_A, cols_A, B);
 	Print(A, rows_A, cols_A); cout << endl;
 
@@ -99,7 +99,7 @@ void main()
 	Print(A, rows_A, cols_A); cout << endl;
 
 	FillRand(B, rows_A);
-	Print(B, rows_A);
+	Print(B, rows_A); cout << endl;
 	int index_Col;
 	cout << "Введите индекс по которому добавить столбец в массив: ";
 	cin >> index_Col;
