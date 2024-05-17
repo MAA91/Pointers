@@ -1,15 +1,13 @@
 //BaseFunction.cpp
 #include "BaseFunction.h"
 
-template <typename T>
-void Print(T A[], int size)
+template <typename T> void Print(T A[], int size)
 {
 	for (int i = 0; i < size; i++)
 		cout << A[i] << " ";
 	cout << endl;
 }
-template <typename T>
-void Print(T** A, int ROW, int COL)
+template <typename T> void Print(T** A, int ROW, int COL)
 {
 	for (int i = 0; i < ROW; i++)
 	{
@@ -19,8 +17,7 @@ void Print(T** A, int ROW, int COL)
 	}
 }
 
-template <typename T>
-void Search(T A[])
+template <typename T> void Search(T A[])
 {
 	T BUF[SIZE]{};
 	int size_BUF{};

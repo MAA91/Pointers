@@ -5,8 +5,8 @@
 #include "PushAndPop.h"
 #include "PushAndPop.cpp"
 
-//#define DINAMIK_MEMORY_1
-#define DINAMIK_MEMORY_2
+#define DINAMIK_MEMORY_1
+//#define DINAMIK_MEMORY_2
 
 void main()
 {
@@ -54,8 +54,7 @@ void main()
 	cout << "Введите кол-во строк массива: "; cin >> rows_A;
 	cout << "Введите кол-во столбцов массива: "; cin >> cols_A;
 
-	DataType** A = nullptr;
-	A = Allocate(A, rows_A, cols_A);
+	DataType** A = Allocate<DataType>(rows_A, cols_A);
 	FillRand(A, rows_A, cols_A);
 	Print(A, rows_A, cols_A);
 
